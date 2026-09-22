@@ -1,0 +1,47 @@
+{
+  "name": "eleengwiki",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "verify": "tsx scripts/verify-calculators.ts && tsx scripts/verify-content.ts",
+    "verify:calc": "tsx scripts/verify-calculators.ts",
+    "verify:content": "tsx scripts/verify-content.ts",
+    "fonts": "python3 scripts/build-fonts.py"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "jspdf": "^4.2.1",
+    "katex": "^0.18.7",
+    "next": "^15.5.25",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-katex": "^7.0.1",
+    "rehype-slug": "^6.0.0",
+    "rehype-stringify": "^10.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "unified": "^11.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.6.1",
+    "playwright": "^1.63.0",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^3.4.19",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  },
+  "description": "Electrical and RF engineering wiki with interactive calculators and exportable results.",
+  "engines": {
+    "node": ">=18.18"
+  }
+}
