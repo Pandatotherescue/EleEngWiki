@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 250 250 249;
+    --surface: 255 255 255;
+    --raised: 244 244 242;
+    --line: 226 226 222;
+    --ink: 24 26 27;
+    --muted: 94 100 104;
+    --faint: 139 145 150;
+    --accent: 13 110 130;
+    --accent-soft: 224 242 246;
+  }
+
+  .dark {
+    --bg: 14 16 18;
+    --surface: 22 25 28;
+    --raised: 30 34 38;
+    --line: 45 51 56;
+    --ink: 232 234 235;
+    --muted: 154 162 168;
+    --faint: 112 120 127;
+    --accent: 77 190 214;
+    --accent-soft: 20 45 54;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-bg font-sans text-ink antialiased;
+    font-feature-settings: 'tnum' 0;
+  }
+
+  ::selection {
+    background: rgb(var(--accent) / 0.22);
+  }
+
+  /* Focus ring, consistent across every interactive element. */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    @apply outline-none ring-2 ring-accent/60 ring-offset-2 ring-offset-bg rounded-[3px];
+  }
+}
+
+@layer components {
+  /* ---- Wiki prose ------------------------------------------------------ */
+  .prose-wiki {
+    @apply text-[15.5px] leading-[1.72] text-ink/90;
+  }
+  .prose-wiki > * + * {
+    @apply mt-4;
+  }
+  .prose-wiki h2 {
+    @apply mt-11 mb-3 scroll-mt-24 text-[1.4rem] font-semibold tracking-tight text-ink;
+  }
+  .prose-wiki h3 {
+    @apply mt-8 mb-2 scroll-mt-24 text-[1.1rem] font-semibold tracking-tight text-ink;
+  }
+  .prose-wiki h2 + *,
+  .prose-wiki h3 + * {
+    @apply mt-0;
+  }
+  .prose-wiki p {
+    @apply text-ink/90;
+  }
+  .prose-wiki a {
+    @apply text-accent underline decoration-accent/30 underline-offset-[3px] transition-colors hover:decoration-accent;
+  }
+  .prose-wiki strong {
+    @apply font-semibold text-ink;
+  }
+  .prose-wiki ul {
+    @apply list-disc space-y-1.5 pl-5 marker:text-faint;
+  }
+  .prose-wiki ol {
+    @apply list-decimal space-y-1.5 pl-5 marker:text-faint;
+  }
+  .prose-wiki li > ul,
+  .prose-wiki li > ol {
+    @apply mt-1.5;
+  }
+  .prose-wiki code {
+    @apply rounded bg-raised px-[0.35em] py-[0.12em] font-mono text-[0.86em] text-ink;
+  }
+  .prose-wiki pre {
+    @apply overflow-x-auto rounded-lg border border-line bg-raised p-4 text-[0.84em] leading-relaxed;
+  }
+  .prose-wiki pre code {
+    @apply bg-transparent p-0 text-ink/90;
+  }
+  .prose-wiki blockquote {
+    @apply border-l-[3px] border-accent/40 bg-accent-soft/40 py-2 pl-4 pr-3 text-ink/85 [&>p]:m-0;
+  }
+  .prose-wiki hr {
+    @apply my-9 border-line;
+  }
+  .prose-wiki table {
+    @apply w-full border-collapse text-[0.92em];
+  }
+  .prose-wiki thead {
+    @apply border-b border-line;
+  }
+  .prose-wiki th {
+    @apply px-3 py-2 text-left font-semibold text-ink;
+  }
+  .prose-wiki td {
+    @apply border-b border-line/70 px-3 py-2 align-top text-ink/85;
+  }
+  .prose-wiki tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  /* Heading anchor links added by rehype-autolink-headings. */
+  .heading-anchor {
+    @apply ml-2 text-faint no-underline opacity-0 transition-opacity;
+  }
+  h2:hover > .heading-anchor,
+  h3:hover > .heading-anchor,
+  .heading-anchor:focus {
+    @apply opacity-100;
+  }
+
+  /* ---- Form controls --------------------------------------------------- */
+  .field-input {
+    @apply w-full rounded-l-md border border-line bg-surface px-3 py-2 font-mono text-[0.95rem] tabular-nums
+           text-ink transition-colors placeholder:text-faint hover:border-faint/60
+           focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent;
+  }
+  .field-unit {
+    @apply -ml-px shrink-0 rounded-r-md border border-line bg-raised px-2 py-2 text-[0.85rem]
+           text-muted transition-colors hover:border-faint/60 hover:text-ink
+           focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent;
+  }
+  .field-select {
+    @apply w-full rounded-md border border-line bg-surface px-3 py-2 text-[0.95rem] text-ink
+           transition-colors hover:border-faint/60 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-md border border-line bg-surface
+           px-3 py-1.5 text-[0.85rem] font-medium text-ink transition-colors
+           hover:border-faint/70 hover:bg-raised active:bg-line/50 disabled:opacity-50;
+  }
+  .btn-accent {
+    @apply border-accent/30 bg-accent-soft text-accent hover:border-accent/50 hover:bg-accent-soft;
+  }
+}
+
+/* ---- KaTeX ------------------------------------------------------------ */
+.katex {
+  font-size: 1.04em;
+}
+.katex-display {
+  @apply my-5 overflow-x-auto overflow-y-hidden py-1;
+}
+.prose-wiki .katex-display > .katex {
+  @apply text-ink;
+}
+
+/* Thin, unobtrusive scrollbars in the sidebar and code blocks. */
+.scroll-slim {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--line)) transparent;
+}
+.scroll-slim::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scroll-slim::-webkit-scrollbar-thumb {
+  background-color: rgb(var(--line));
+  border-radius: 4px;
+}
+.scroll-slim::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
