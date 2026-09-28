@@ -275,7 +275,18 @@ deserves a primary source and a second opinion.
 
 ## Licence
 
-Code and content: yours to do as you like with.
+© Jakob Persson. Free to use, adapt and redistribute, including commercially, as long
+as you give credit. Two licences, because it is two kinds of work — see `LICENSE` for
+the full text:
+
+- **Code** — everything outside `content/` and `glossary/` — under the MIT licence.
+- **Content** — the articles and the glossary — under CC BY 4.0. MIT is written for
+  software and reads oddly applied to prose, so the writing is licensed separately.
+  The condition is the same either way: attribution.
+
+The holder's name lives in `lib/site.ts` alongside the copyright year, which is fixed
+at build time and refreshes on every deploy. The footer and the About page both read
+it from there, so changing it in one place changes it everywhere.
 
 The fonts in `public/fonts/` are subsets of DejaVu Sans, derived from Bitstream Vera
 under a permissive licence — see `public/fonts/LICENSE.txt`, which must be kept if you
