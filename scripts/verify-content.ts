@@ -9,6 +9,7 @@
  */
 import { getAllPages } from '../lib/content';
 import { ALL_CALCULATORS, CATEGORIES } from '../calculators';
+import { ALL_TERMS, GLOSSARY_CATEGORIES } from '../glossary';
 
 let failures = 0;
 let warnings = 0;
@@ -91,6 +92,36 @@ for (const page of pages) {
   }
 }
 
+// --- Sub-group consistency -------------------------------------------
+/**
+ * Within a category, pages either all carry a `group` or none do. A category
+ * where only some pages are grouped renders an unlabelled orphan block in the
+ * sidebar, and one page arriving without a group is the usual way that happens.
+ * The equipment overview is the deliberate exception: it sits above the groups.
+ */
+for (const cat of CATEGORIES) {
+  const inCategory = pages.filter((p) => p.category === cat.id);
+  if (inCategory.length === 0) continue;
+  const grouped = inCategory.filter((p) => p.group);
+  const ungrouped = inCategory.filter((p) => !p.group);
+
+  if (grouped.length > 0 && ungrouped.length > 0) {
+    const exempt = cat.id === 'equipment' && ungrouped.length === 1;
+    if (!exempt) {
+      for (const p of ungrouped) {
+        fail(`${p.slug}: no group, but ${grouped.length} other ${cat.title} pages are grouped`);
+      }
+    }
+  }
+
+  // A group of one reads as a mistake in a sidebar next to groups of four.
+  const sizes = new Map<string, number>();
+  for (const p of grouped) sizes.set(p.group, (sizes.get(p.group) ?? 0) + 1);
+  for (const [name, n] of sizes) {
+    if (n === 1) warn(`${cat.title}: group "${name}" has only one page`);
+  }
+}
+
 // --- Coverage --------------------------------------------------------
 for (const calc of ALL_CALCULATORS) {
   if (!usedCalcs.has(calc.id)) {
@@ -99,6 +130,61 @@ for (const calc of ALL_CALCULATORS) {
   if (!categoryIds.has(calc.category)) {
     fail(`calculator "${calc.id}": unknown category "${calc.category}"`);
   }
+
+  /**
+   * Two outputs sharing a label render as the same row twice — the link budget
+   * listed "Received power" in both dBm and watts, several rows apart, which
+   * read as a bug rather than a convenience. Labels also become the row headings
+   * in the PDF and Markdown exports, where the ambiguity survives the copy.
+   */
+  for (const mode of calc.modes) {
+    const seen = new Map<string, number>();
+    for (const out of mode.outputs) {
+      seen.set(out.label, (seen.get(out.label) ?? 0) + 1);
+    }
+    for (const [label, n] of seen) {
+      if (n > 1) {
+        fail(`calculator "${calc.id}" (${mode.label}): ${n} outputs both labelled "${label}"`);
+      }
+    }
+    if (mode.outputs.filter((o) => o.primary).length > 1) {
+      warn(`calculator "${calc.id}" (${mode.label}): more than one primary output`);
+    }
+  }
+}
+
+// --- Glossary --------------------------------------------------------
+const termNames = new Set<string>(ALL_TERMS.map((t) => t.term));
+const glossaryCategoryIds = new Set<string>(GLOSSARY_CATEGORIES.map((c) => c.id));
+const seenTerms = new Set<string>();
+
+for (const entry of ALL_TERMS) {
+  if (seenTerms.has(entry.term)) fail(`glossary: duplicate term "${entry.term}"`);
+  seenTerms.add(entry.term);
+
+  if (!glossaryCategoryIds.has(entry.category)) {
+    fail(`glossary "${entry.term}": unknown category "${entry.category}"`);
+  }
+  if (!entry.definition || entry.definition.length < 30) {
+    fail(`glossary "${entry.term}": definition is missing or too short`);
+  }
+  if (entry.definition.length > 400) {
+    warn(`glossary "${entry.term}": definition is ${entry.definition.length} chars, consider trimming`);
+  }
+  if (entry.page && !slugs.has(entry.page)) {
+    fail(`glossary "${entry.term}": links to page "${entry.page}" which does not exist`);
+  }
+  for (const ref of entry.see ?? []) {
+    if (!termNames.has(ref)) {
+      fail(`glossary "${entry.term}": see-also "${ref}" is not a term`);
+    }
+  }
+}
+
+for (const cat of GLOSSARY_CATEGORIES) {
+  const n = ALL_TERMS.filter((t) => t.category === cat.id).length;
+  if (n === 0) fail(`glossary category "${cat.id}" has no terms`);
+  else console.log(`  ok    glossary / ${cat.title}: ${n} terms`);
 }
 
 for (const cat of CATEGORIES) {
@@ -109,7 +195,7 @@ for (const cat of CATEGORIES) {
 
 console.log(
   `\n${pages.length} pages, ${usedCalcs.size}/${ALL_CALCULATORS.length} calculators embedded, ` +
-    `${failures} failures, ${warnings} warnings\n`
+    `${ALL_TERMS.length} glossary terms, ${failures} failures, ${warnings} warnings\n`
 );
 
 process.exit(failures > 0 ? 1 : 0);
