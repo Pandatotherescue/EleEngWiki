@@ -6,6 +6,7 @@ import HeaderNav from '@/components/HeaderNav';
 import SearchDialog from '@/components/SearchDialog';
 import ThemeToggle from '@/components/ThemeToggle';
 import { buildSearchIndex } from '@/lib/search-index';
+import { BUILD_YEAR, COPYRIGHT_HOLDER } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: {
@@ -121,10 +122,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
               </nav>
             </div>
-            <p className="mt-8 border-t border-line pt-5 text-[0.75rem] text-faint">
-              Content is provided as-is for reference and study. Not a substitute for the
-              relevant standards or a qualified engineer&apos;s judgement.
-            </p>
+            <div className="mt-8 flex flex-col gap-3 border-t border-line pt-5 text-[0.75rem] text-faint sm:flex-row sm:items-start sm:justify-between sm:gap-8">
+              <p className="max-w-xl">
+                Content is provided as-is for reference and study. Not a substitute for the
+                relevant standards or a qualified engineer&apos;s judgement.
+              </p>
+              <p className="shrink-0 sm:text-right">
+                &copy; {BUILD_YEAR} {COPYRIGHT_HOLDER}.
+                <br className="hidden sm:block" />{' '}
+                <Link
+                  href="/about#licence"
+                  className="underline decoration-line underline-offset-2 transition-colors hover:text-muted"
+                >
+                  Free to use with attribution
+                </Link>
+                .
+              </p>
+            </div>
           </div>
         </footer>
       </body>

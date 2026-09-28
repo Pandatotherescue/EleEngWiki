@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ALL_CALCULATORS } from '@/calculators';
 import { getAllPages } from '@/lib/content';
+import { BUILD_YEAR, COPYRIGHT_HOLDER } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -93,6 +94,39 @@ More prose after the calculator.`}</code>
           Next.js and Tailwind CSS, rendered to static pages at build time. Maths is typeset with
           KaTeX on the server, so no maths library is shipped to your browser. PDF export happens
           entirely client-side; nothing you type is sent anywhere.
+        </p>
+
+        <h2 id="licence">Licence</h2>
+        <p>
+          &copy; {BUILD_YEAR} {COPYRIGHT_HOLDER}. You are free to use, adapt and redistribute both the
+          code and the writing, including commercially, provided you give credit.
+        </p>
+        <ul>
+          <li>
+            The <strong>code</strong> — everything outside <code>content/</code> and{' '}
+            <code>glossary/</code> — is under the{' '}
+            <a href="https://opensource.org/licenses/MIT" rel="noreferrer noopener" target="_blank">
+              MIT licence
+            </a>
+            .
+          </li>
+          <li>
+            The <strong>written content</strong> — the articles and the glossary — is under{' '}
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              rel="noreferrer noopener"
+              target="_blank"
+            >
+              CC BY 4.0
+            </a>
+            . MIT is written for software and reads oddly when applied to prose, so the two are
+            split; the practical effect is the same, which is that attribution is the only
+            condition.
+          </li>
+        </ul>
+        <p>
+          Exported PDFs and Markdown carry a line pointing back here, so a result pasted into a
+          design log stays traceable without anyone having to remember where it came from.
         </p>
       </div>
 
