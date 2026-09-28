@@ -1,9 +1,10 @@
 ---
 title: Antenna Gain & Beamwidth
 category: rf
+group: Antennas
 summary: What gain really is, how aperture size sets it, and the inescapable trade against beamwidth.
 tags: [antenna gain, dbi, dbd, beamwidth, aperture, directivity, parabolic, dish]
-order: 48
+order: 50
 related: [antenna-fundamentals, eirp-and-erp, link-budget, fresnel-zones]
 ---
 

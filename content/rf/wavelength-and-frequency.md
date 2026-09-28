@@ -1,6 +1,7 @@
 ---
 title: Wavelength & Frequency
 category: rf
+group: Waves & lines
 summary: Converting between frequency and wavelength, what velocity factor does to it, and the band names you will keep meeting.
 tags: [wavelength, frequency, lambda, velocity factor, bands, propagation, spectrum]
 order: 39

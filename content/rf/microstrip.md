@@ -1,9 +1,10 @@
 ---
 title: Microstrip & PCB Transmission Lines
 category: rf
+group: Waves & lines
 summary: Getting a controlled impedance out of a PCB trace, and the stackup details that decide whether you succeed.
 tags: [microstrip, stripline, pcb, impedance, trace width, er, stackup, coplanar]
-order: 45
+order: 42
 related: [transmission-lines, pcb-traces, impedance-matching]
 ---
 

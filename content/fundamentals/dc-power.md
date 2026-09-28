@@ -1,10 +1,11 @@
 ---
 title: Power & Energy in DC Circuits
 category: fundamentals
+group: Circuit theory
 summary: How much heat a component has to get rid of, how much energy a circuit consumes over time, and why the two get confused.
 tags: [power, watts, energy, joules, dissipation, heat, derating]
 order: 2
-related: [ohms-law, wire-and-cable, series-parallel-resistors]
+related: [ohms-law, wire-and-cable, series-parallel-resistors, leds]
 ---
 
 Power is the rate at which energy is converted. In a DC circuit it is the product of voltage and current:

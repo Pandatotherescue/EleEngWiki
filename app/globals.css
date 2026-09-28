@@ -52,6 +52,18 @@
   .prose-wiki {
     @apply text-[15.5px] leading-[1.72] text-ink/90;
   }
+  /*
+   * Block spacing is set on the elements themselves rather than with a sibling
+   * selector. Rendered Markdown sits inside a wrapper div per page segment, so
+   * a paragraph is never a direct child of .prose-wiki and `> * + *` would
+   * leave consecutive paragraphs flush against each other.
+   */
+  .prose-wiki :where(p, ul, ol, pre, blockquote, .table-scroll) {
+    @apply mb-4;
+  }
+  .prose-wiki li > :where(ul, ol) {
+    @apply mb-0;
+  }
   .prose-wiki > * + * {
     @apply mt-4;
   }
@@ -99,8 +111,15 @@
   .prose-wiki hr {
     @apply my-9 border-line;
   }
+  .prose-wiki .table-scroll {
+    @apply scroll-slim -mx-1 overflow-x-auto px-1;
+  }
   .prose-wiki table {
     @apply w-full border-collapse text-[0.92em];
+  }
+  /* Wide reference tables stay legible rather than compressing into slivers. */
+  .prose-wiki .table-scroll table {
+    @apply min-w-[34rem];
   }
   .prose-wiki thead {
     @apply border-b border-line;

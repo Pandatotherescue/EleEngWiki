@@ -1,10 +1,11 @@
 ---
 title: Transmission Lines
 category: rf
+group: Waves & lines
 summary: When a wire stops being a wire, what characteristic impedance means, and why an unterminated line reflects.
 tags: [transmission line, characteristic impedance, propagation, velocity factor, reflection, wavelength]
 order: 40
-related: [coaxial-cable, vswr-and-return-loss, microstrip, impedance-matching]
+related: [coaxial-cable, vswr-and-return-loss, microstrip, impedance-matching, waveguide]
 ---
 
 At low frequency a wire is a wire: the same voltage appears at both ends at the same instant. That assumption — the lumped element model behind [Kirchhoff's laws](/wiki/kirchhoffs-laws) — quietly stops being true as frequency rises.

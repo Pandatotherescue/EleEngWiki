@@ -1,10 +1,11 @@
 ---
 title: Coaxial Cable
 category: rf
+group: Waves & lines
 summary: Why 50 ohms became standard, what sets a cable's impedance and loss, and the frequency above which it stops behaving.
 tags: [coax, coaxial, 50 ohm, 75 ohm, cable loss, velocity factor, shielding, connector]
 order: 41
-related: [transmission-lines, vswr-and-return-loss, skin-effect]
+related: [transmission-lines, vswr-and-return-loss, skin-effect, waveguide]
 ---
 
 Coaxial cable confines the entire field between an inner conductor and a surrounding shield. That confinement is what makes it useful: the field does not radiate, and external fields do not get in.

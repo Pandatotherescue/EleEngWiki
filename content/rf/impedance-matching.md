@@ -1,9 +1,10 @@
 ---
 title: Impedance Matching
 category: rf
+group: Matching & networks
 summary: Why matching matters, how an L-network works, and what you give up when you choose one topology over another.
 tags: [matching, l network, pi network, tuner, conjugate, maximum power transfer, q]
-order: 44
+order: 47
 related: [vswr-and-return-loss, smith-chart, transformers, q-factor]
 ---
 

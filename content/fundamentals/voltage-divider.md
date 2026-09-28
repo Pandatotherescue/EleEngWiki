@@ -1,6 +1,7 @@
 ---
 title: Voltage Divider
 category: fundamentals
+group: Circuit theory
 summary: The most-used circuit in electronics, and the mistake almost everyone makes with it at least once.
 tags: [divider, potential divider, attenuator, bias, reference, loading]
 order: 4

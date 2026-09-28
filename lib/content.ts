@@ -34,6 +34,12 @@ export type PageMeta = {
   slug: string;
   title: string;
   category: string;
+  /**
+   * Optional sub-heading within a category, used by the sidebar and the index
+   * pages. Categories with only a handful of pages leave it empty and render
+   * as one flat list.
+   */
+  group: string;
   summary: string;
   tags: string[];
   order: number;
@@ -73,7 +79,12 @@ function markdownProcessor() {
 }
 
 function renderMarkdown(md: string): string {
-  return String(markdownProcessor().processSync(md));
+  const html = String(markdownProcessor().processSync(md));
+  // Give every table its own horizontal scroll container, so a wide table
+  // scrolls inside the column instead of making the whole page scroll sideways.
+  return html
+    .replace(/<table>/g, '<div class="table-scroll"><table>')
+    .replace(/<\/table>/g, '</table></div>');
 }
 
 /** Slugify a heading the same way rehype-slug does, for the on-page nav. */
@@ -151,6 +162,7 @@ function parsePage(slug: string, file: string): Page {
     slug,
     title: String(data.title ?? slug),
     category: String(data.category ?? 'fundamentals'),
+    group: String(data.group ?? ''),
     summary: String(data.summary ?? ''),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     order: Number(data.order ?? 999),
@@ -178,6 +190,21 @@ export function getPage(slug: string): Page | undefined {
 
 export function getPagesInCategory(category: string): Page[] {
   return getAllPages().filter((p) => p.category === category);
+}
+
+/**
+ * Pages of a category, split into sub-groups in the order the groups first
+ * appear. A category whose pages declare no group comes back as a single
+ * unnamed group, which callers render without a heading.
+ */
+export function groupsInCategory(category: string): { name: string; pages: Page[] }[] {
+  const out: { name: string; pages: Page[] }[] = [];
+  for (const page of getPagesInCategory(category)) {
+    const existing = out.find((g) => g.name === page.group);
+    if (existing) existing.pages.push(page);
+    else out.push({ name: page.group, pages: [page] });
+  }
+  return out;
 }
 
 export function pageMeta(p: Page): PageMeta {

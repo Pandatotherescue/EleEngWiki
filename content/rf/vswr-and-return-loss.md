@@ -1,9 +1,10 @@
 ---
 title: VSWR & Return Loss
 category: rf
+group: Matching & networks
 summary: Four different ways of stating the same mismatch, and how much a bad match actually costs you.
 tags: [vswr, swr, return loss, reflection coefficient, gamma, mismatch loss, match]
-order: 42
+order: 45
 related: [transmission-lines, impedance-matching, smith-chart, antenna-fundamentals]
 ---
 

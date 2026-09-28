@@ -70,15 +70,24 @@ for (const page of pages) {
     warn(`${page.slug}: no headings, so it has no table of contents`);
   }
 
-  // Internal links written as /wiki/<slug> must resolve.
-  const linkPattern = /\/wiki\/([a-z0-9-]+)/g;
+  // Internal links must resolve, and must point at the area the page lives in.
+  const linkPattern = /\/(wiki|equipment)\/([a-z0-9-]+)/g;
   const body = page.segments
     .filter((s): s is { type: 'html'; html: string } => s.type === 'html')
     .map((s) => s.html)
     .join(' ');
   let m: RegExpExecArray | null;
   while ((m = linkPattern.exec(body)) !== null) {
-    if (!slugs.has(m[1])) fail(`${page.slug}: broken internal link to /wiki/${m[1]}`);
+    const [, area, slug] = m;
+    const target = pages.find((p) => p.slug === slug);
+    if (!target) {
+      fail(`${page.slug}: broken internal link to /${area}/${slug}`);
+    } else {
+      const expected = target.category === 'equipment' ? 'equipment' : 'wiki';
+      if (area !== expected) {
+        fail(`${page.slug}: link to /${area}/${slug} should be /${expected}/${slug}`);
+      }
+    }
   }
 }
 

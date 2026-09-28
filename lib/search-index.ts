@@ -1,4 +1,5 @@
 import { getAllPages } from './content';
+import { hrefForPage } from './navigation';
 import type { SearchDoc } from './search';
 import { ALL_CALCULATORS, categoryTitle } from '@/calculators';
 
@@ -11,8 +12,9 @@ export function buildSearchIndex(): SearchDoc[] {
       id: `page:${page.slug}`,
       title: page.title,
       subtitle: page.summary,
-      href: `/wiki/${page.slug}`,
+      href: hrefForPage(page),
       kind: 'page',
+      badge: page.category === 'equipment' ? 'equip' : 'wiki',
       category: categoryTitle(page.category),
       text: `${page.tags.join(' ')} ${page.summary} ${page.plain}`.toLowerCase().slice(0, 4000),
     });
@@ -25,6 +27,7 @@ export function buildSearchIndex(): SearchDoc[] {
       subtitle: calc.summary,
       href: `/calculators/${calc.id}`,
       kind: 'calculator',
+      badge: 'calc',
       category: categoryTitle(calc.category),
       text: [
         calc.tags?.join(' ') ?? '',

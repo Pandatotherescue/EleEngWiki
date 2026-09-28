@@ -149,7 +149,7 @@ export default function SearchDialog({ docs }: { docs: SearchDoc[] }) {
                           : 'bg-line/60 text-muted'
                       }`}
                     >
-                      {doc.kind === 'calculator' ? 'calc' : 'wiki'}
+                      {doc.badge}
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-[0.88rem] font-medium text-ink">

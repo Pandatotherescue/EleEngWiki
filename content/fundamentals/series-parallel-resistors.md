@@ -1,6 +1,7 @@
 ---
 title: Series & Parallel Networks
 category: fundamentals
+group: Circuit theory
 summary: Combining resistors, capacitors and inductors — and the reason the two rules swap over for capacitors.
 tags: [series, parallel, network, equivalent resistance, combination]
 order: 3

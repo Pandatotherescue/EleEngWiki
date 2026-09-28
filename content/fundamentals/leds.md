@@ -1,6 +1,7 @@
 ---
 title: LEDs & Current Limiting
 category: fundamentals
+group: Components & build
 summary: Why an LED needs a resistor, how to size it, and when a resistor is the wrong answer entirely.
 tags: [led, forward voltage, current limiting, series resistor, constant current, indicator]
 order: 10

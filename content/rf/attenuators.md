@@ -1,9 +1,10 @@
 ---
 title: Attenuators & Pads
 category: rf
+group: Matching & networks
 summary: Resistive networks that reduce a signal while keeping both ports matched, and why a pad is sometimes worth its loss.
 tags: [attenuator, pad, pi pad, t pad, isolation, matching, resistive]
-order: 46
+order: 48
 related: [impedance-matching, vswr-and-return-loss, decibels]
 ---
 

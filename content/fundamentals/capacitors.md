@@ -1,6 +1,7 @@
 ---
 title: Capacitors
 category: fundamentals
+group: Circuit theory
 summary: What capacitance means, how the dielectric type changes everything, and why the capacitor you bought is not the capacitance you get.
 tags: [capacitor, capacitance, dielectric, ESR, X7R, electrolytic, decoupling]
 order: 6

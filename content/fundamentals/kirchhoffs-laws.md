@@ -1,6 +1,7 @@
 ---
 title: Kirchhoff's Laws
 category: fundamentals
+group: Circuit theory
 summary: The two conservation statements that let you analyse any circuit, including the ones that do not reduce to series and parallel.
 tags: [kirchhoff, KCL, KVL, nodal analysis, mesh analysis, loop]
 order: 5

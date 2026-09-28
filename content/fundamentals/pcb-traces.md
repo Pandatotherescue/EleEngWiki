@@ -1,6 +1,7 @@
 ---
 title: PCB Traces & Copper
 category: fundamentals
+group: Components & build
 summary: Sizing a trace for current, what copper weight really means, and when a trace stops being a wire and becomes a transmission line.
 tags: [pcb, trace width, copper weight, IPC-2221, current capacity, layout, via]
 order: 12

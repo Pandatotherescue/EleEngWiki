@@ -9,6 +9,8 @@ export type SearchDoc = {
   subtitle: string;
   href: string;
   kind: 'page' | 'calculator';
+  /** Short label shown on the result row: 'wiki', 'equip' or 'calc'. */
+  badge: string;
   category: string;
   /** Lower-cased haystack: tags, summary and body text. */
   text: string;

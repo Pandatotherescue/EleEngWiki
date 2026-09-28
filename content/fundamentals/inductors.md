@@ -1,6 +1,7 @@
 ---
 title: Inductors
 category: fundamentals
+group: Circuit theory
 summary: Energy stored in a magnetic field, why inductors kick back when you interrupt them, and what saturation does to your circuit.
 tags: [inductor, inductance, magnetic, core, saturation, flyback, choke]
 order: 7

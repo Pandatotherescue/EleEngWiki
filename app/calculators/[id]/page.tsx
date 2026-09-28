@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ALL_CALCULATORS, calculatorsInCategory, categoryTitle, getCalculator } from '@/calculators';
 import { getAllPages } from '@/lib/content';
+import { hrefForPage } from '@/lib/navigation';
 import CalculatorBlock from '@/components/CalculatorBlock';
 
 export const dynamicParams = false;
@@ -62,7 +63,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ id:
           <ul className="mt-3 space-y-2.5">
             {pages.map((p) => (
               <li key={p.slug}>
-                <Link href={`/wiki/${p.slug}`} className="group block">
+                <Link href={hrefForPage(p)} className="group block">
                   <span className="text-[0.92rem] font-medium text-accent transition-opacity group-hover:opacity-75">
                     {p.title} →
                   </span>

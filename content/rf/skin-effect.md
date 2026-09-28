@@ -1,9 +1,10 @@
 ---
 title: Skin Effect
 category: rf
+group: Waves & lines
 summary: Why high-frequency current flows only on the surface of a conductor, and what that does to resistance and design.
 tags: [skin effect, skin depth, ac resistance, proximity effect, litz, silver plating, conductor]
-order: 54
+order: 44
 related: [wire-and-cable, coaxial-cable, inductors, q-factor]
 ---
 

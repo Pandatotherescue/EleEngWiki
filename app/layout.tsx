@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: '%s — EleEngWiki',
   },
   description:
-    'A concise reference for electrical and RF engineering, with a working calculator on every page and exportable results.',
+    'A reference for electrical and RF engineering: concept pages with working calculators, and catalogues of professional radio hardware.',
   metadataBase: new URL('https://eleengwiki.vercel.app'),
   openGraph: {
     title: 'EleEngWiki',
@@ -40,6 +40,7 @@ const THEME_SCRIPT = `
 const NAV = [
   { href: '/wiki', label: 'Wiki' },
   { href: '/calculators', label: 'Calculators' },
+  { href: '/equipment', label: 'Equipment' },
   { href: '/about', label: 'About' },
 ];
 

@@ -1,9 +1,10 @@
 ---
 title: EIRP & ERP
 category: rf
+group: Antennas
 summary: The number regulators care about — transmitter power, feedline loss and antenna gain combined into one figure.
 tags: [eirp, erp, radiated power, regulatory, antenna gain, feedline loss, compliance]
-order: 49
+order: 51
 related: [antenna-gain, decibels, link-budget]
 ---
 

@@ -1,9 +1,10 @@
 ---
 title: Fresnel Zones
 category: rf
+group: Propagation & links
 summary: Why line of sight is not enough, how much clearance a radio path actually needs, and the earth bulge nobody remembers.
 tags: [fresnel, clearance, line of sight, diffraction, obstruction, path planning, earth bulge]
-order: 52
+order: 53
 related: [path-loss, link-budget, antenna-gain]
 ---
 

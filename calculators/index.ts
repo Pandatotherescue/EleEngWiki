@@ -19,6 +19,11 @@ export const CATEGORIES = [
     title: 'RF & Microwave',
     blurb: 'Transmission lines, matching, antennas, noise and propagation.',
   },
+  {
+    id: 'equipment',
+    title: 'Equipment',
+    blurb: 'Professional radio hardware, catalogued by manufacturer and role.',
+  },
 ] as const;
 
 export type CategoryId = (typeof CATEGORIES)[number]['id'];

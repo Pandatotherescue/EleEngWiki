@@ -1,6 +1,7 @@
 ---
 title: Wire, Cable & Voltage Drop
 category: fundamentals
+group: Components & build
 summary: Picking a conductor size from current, distance and how much voltage you can afford to lose along the way.
 tags: [awg, wire gauge, voltage drop, ampacity, copper, cable, conductor]
 order: 11

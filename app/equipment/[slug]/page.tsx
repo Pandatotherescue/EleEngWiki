@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getPage } from '@/lib/content';
-import { WIKI_AREA, pagesInArea, sidebarForArea } from '@/lib/navigation';
+import { EQUIPMENT_AREA, pagesInArea, sidebarForArea } from '@/lib/navigation';
 import ArticleLayout from '@/components/ArticleLayout';
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return pagesInArea(WIKI_AREA).map((p) => ({ slug: p.slug }));
+  return pagesInArea(EQUIPMENT_AREA).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -25,19 +25,19 @@ export async function generateMetadata({
   };
 }
 
-export default async function WikiPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function EquipmentPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const page = getPage(slug);
-  if (!page || page.category === 'equipment') notFound();
+  if (!page || page.category !== 'equipment') notFound();
 
   return (
     <ArticleLayout
       page={page}
-      siblings={pagesInArea(WIKI_AREA)}
-      sections={sidebarForArea(WIKI_AREA)}
-      basePath={WIKI_AREA.basePath}
-      areaLabel={WIKI_AREA.label}
-      areaHref="/wiki"
+      siblings={pagesInArea(EQUIPMENT_AREA)}
+      sections={sidebarForArea(EQUIPMENT_AREA)}
+      basePath={EQUIPMENT_AREA.basePath}
+      areaLabel={EQUIPMENT_AREA.label}
+      areaHref="/equipment"
     />
   );
 }

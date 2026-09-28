@@ -1,9 +1,10 @@
 ---
 title: Noise Figure & Sensitivity
 category: rf
+group: Propagation & links
 summary: Why the first stage dominates, how the Friis cascade works, and what sets the noise floor of a receiver.
 tags: [noise figure, friis, cascade, lna, noise temperature, sensitivity, thermal noise, ktb]
-order: 53
+order: 55
 related: [link-budget, attenuators, decibels]
 ---
 

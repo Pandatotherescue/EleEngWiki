@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getAllPages } from '@/lib/content';
+import { hrefForPage } from '@/lib/navigation';
 import { ALL_CALCULATORS } from '@/calculators';
 
 const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://eleengwiki.vercel.app';
@@ -10,9 +11,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: BASE, lastModified: now, priority: 1 },
     { url: `${BASE}/wiki`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/calculators`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/equipment`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/about`, lastModified: now, priority: 0.5 },
     ...getAllPages().map((p) => ({
-      url: `${BASE}/wiki/${p.slug}`,
+      url: `${BASE}${hrefForPage(p)}`,
       lastModified: now,
       priority: 0.8,
     })),

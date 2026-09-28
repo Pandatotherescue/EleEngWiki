@@ -1,9 +1,10 @@
 ---
 title: Waveguide
 category: rf
+group: Waves & lines
 summary: Hollow metal pipes that carry microwaves with very low loss, and the cut-off frequency below which nothing gets through.
 tags: [waveguide, cutoff, te10, mode, wr-90, microwave, rectangular, guide wavelength]
-order: 55
+order: 43
 related: [transmission-lines, coaxial-cable, wavelength-and-frequency]
 ---
 

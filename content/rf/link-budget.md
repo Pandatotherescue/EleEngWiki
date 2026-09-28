@@ -1,9 +1,10 @@
 ---
 title: Link Budget
 category: rf
+group: Propagation & links
 summary: Adding up every gain and loss between transmitter and receiver to find out whether a link will work.
 tags: [link budget, margin, sensitivity, fade margin, range, system gain, planning]
-order: 51
+order: 54
 related: [path-loss, antenna-gain, noise-figure, eirp-and-erp]
 ---
 

@@ -1,10 +1,11 @@
 ---
 title: Ohm's Law
 category: fundamentals
+group: Circuit theory
 summary: The relationship between voltage, current and resistance — the single equation the rest of circuit theory is built on.
 tags: [ohm, voltage, current, resistance, V=IR, fundamentals]
 order: 1
-related: [dc-power, series-parallel-resistors, voltage-divider]
+related: [dc-power, series-parallel-resistors, voltage-divider, leds]
 ---
 
 Ohm's law states that the current through a conductor between two points is proportional to the voltage across those points. The constant of proportionality is the resistance:

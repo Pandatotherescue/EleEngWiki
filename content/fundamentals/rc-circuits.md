@@ -1,6 +1,7 @@
 ---
 title: RC Circuits & Time Constants
 category: fundamentals
+group: Circuit theory
 summary: The exponential curve behind every debounce, filter, delay and edge-rounding problem you will meet.
 tags: [rc, time constant, tau, transient, charging, debounce, settling]
 order: 8

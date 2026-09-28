@@ -1,9 +1,10 @@
 ---
 title: The Smith Chart
 category: rf
+group: Matching & networks
 summary: How a chart from 1939 turned transmission-line arithmetic into geometry, and how to read one.
 tags: [smith chart, impedance, admittance, matching, normalised, reflection coefficient, stub]
-order: 43
+order: 46
 related: [vswr-and-return-loss, impedance-matching, transmission-lines, complex-impedance]
 ---
 

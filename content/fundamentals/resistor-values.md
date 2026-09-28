@@ -1,6 +1,7 @@
 ---
 title: Resistor Values & Markings
 category: fundamentals
+group: Components & build
 summary: Preferred value series, the colour code, SMD markings, and why 4.7 kΩ exists but 4.5 kΩ does not.
 tags: [resistor, colour code, color code, E12, E24, E96, preferred values, SMD marking]
 order: 9

@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { getAllPages, getPagesInCategory } from '@/lib/content';
 import { ALL_CALCULATORS, CATEGORIES, calculatorsInCategory } from '@/calculators';
+import { hrefForPage } from '@/lib/navigation';
 
 export default function HomePage() {
   const pages = getAllPages();
+  const equipmentPages = getPagesInCategory('equipment');
 
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -16,9 +18,10 @@ export default function HomePage() {
           The concept, the formula, and a calculator that actually runs it.
         </h1>
         <p className="mt-4 max-w-2xl text-[1.02rem] leading-relaxed text-muted">
-          {pages.length} reference pages across fundamentals, AC theory and RF, each with the
-          working maths embedded in the page. Change the numbers, read the answer, export it as a
-          PDF or drop it into your notes as Markdown.
+          {pages.length - equipmentPages.length} concept pages across fundamentals, AC theory and
+          RF, each with the working maths embedded in the page — plus {equipmentPages.length}{' '}
+          catalogues of the radio hardware itself. Change the numbers, read the answer, export it as
+          a PDF or drop it into your notes as Markdown.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Link
@@ -30,7 +33,18 @@ export default function HomePage() {
           <Link href="/calculators" className="btn px-4 py-2 text-[0.9rem]">
             {ALL_CALCULATORS.length} calculators
           </Link>
+          <Link href="/equipment" className="btn px-4 py-2 text-[0.9rem]">
+            Equipment
+          </Link>
         </div>
+
+        <p className="mt-6 text-[0.86rem] text-muted">
+          New to this?{' '}
+          <Link href="/wiki/ohms-law" className="font-medium text-accent hover:opacity-75">
+            Start with Ohm&rsquo;s Law
+          </Link>{' '}
+          — every other page in Fundamentals builds on it.
+        </p>
 
         <dl className="mt-12 grid max-w-xl grid-cols-3 gap-6">
           <Stat value={String(pages.length)} label="Reference pages" />
@@ -42,15 +56,16 @@ export default function HomePage() {
         </dl>
       </section>
 
-      {/* ---- Categories ------------------------------------------------ */}
+      {/* ---- Sections -------------------------------------------------- */}
       <section className="py-14">
         <h2 className="text-[0.72rem] font-medium uppercase tracking-[0.14em] text-faint">
           Sections
         </h2>
-        <div className="mt-6 grid gap-5 md:grid-cols-3">
+        <div className="mt-6 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
           {CATEGORIES.map((cat) => {
             const catPages = getPagesInCategory(cat.id);
             const catCalcs = calculatorsInCategory(cat.id);
+            const indexHref = cat.id === 'equipment' ? '/equipment' : `/wiki#${cat.id}`;
             return (
               <div
                 key={cat.id}
@@ -59,17 +74,18 @@ export default function HomePage() {
                 <h3 className="text-[1.05rem] font-semibold tracking-tight text-ink">
                   {cat.title}
                 </h3>
-                <p className="mt-1.5 flex-1 text-[0.86rem] leading-relaxed text-muted">
+                <p className="mt-1.5 min-h-[4.2rem] text-[0.86rem] leading-relaxed text-muted">
                   {cat.blurb}
                 </p>
                 <p className="mt-3 font-mono text-[0.72rem] text-faint">
-                  {catPages.length} pages · {catCalcs.length} calculators
+                  {catPages.length} pages
+                  {catCalcs.length > 0 && ` · ${catCalcs.length} calculators`}
                 </p>
-                <ul className="mt-4 space-y-1.5 border-t border-line pt-4">
+                <ul className="mt-4 flex-1 space-y-1.5 border-t border-line pt-4">
                   {catPages.slice(0, 5).map((p) => (
                     <li key={p.slug}>
                       <Link
-                        href={`/wiki/${p.slug}`}
+                        href={hrefForPage(p)}
                         className="text-[0.85rem] text-muted transition-colors hover:text-accent"
                       >
                         {p.title}
@@ -79,7 +95,7 @@ export default function HomePage() {
                 </ul>
                 {catPages.length > 5 && (
                   <Link
-                    href={`/wiki#${cat.id}`}
+                    href={indexHref}
                     className="mt-3 text-[0.8rem] font-medium text-accent transition-opacity hover:opacity-75"
                   >
                     All {catPages.length} pages →
@@ -96,7 +112,7 @@ export default function HomePage() {
         <h2 className="text-[0.72rem] font-medium uppercase tracking-[0.14em] text-faint">
           How it works
         </h2>
-        <div className="mt-6 grid gap-8 md:grid-cols-3">
+        <div className="mt-6 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <Feature
             title="Units are handled for you"
             body="Every numeric input has a unit dropdown, from picofarads to gigahertz. Results come back in whichever engineering prefix keeps them readable, so you are never counting zeroes."
@@ -108,6 +124,10 @@ export default function HomePage() {
           <Feature
             title="Take the result with you"
             body="Export any calculation as a tidy PDF with its inputs, results and caveats, or copy it as a Markdown table for a design log or an email."
+          />
+          <Feature
+            title="Hardware, not just theory"
+            body="The equipment section catalogues what professional radio gear actually exists, with the designation systems decoded and the specifications that matter separated from the ones that do not."
           />
         </div>
       </section>

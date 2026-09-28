@@ -1,9 +1,10 @@
 ---
 title: Antenna Fundamentals
 category: rf
+group: Antennas
 summary: Resonance, radiation resistance, polarisation and ground planes — what actually determines whether an antenna works.
 tags: [antenna, dipole, monopole, resonance, radiation resistance, polarisation, ground plane]
-order: 47
+order: 49
 related: [wavelength-and-frequency, antenna-gain, vswr-and-return-loss, eirp-and-erp]
 ---
 

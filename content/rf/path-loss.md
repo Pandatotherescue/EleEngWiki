@@ -1,9 +1,10 @@
 ---
 title: Free-Space Path Loss
 category: rf
+group: Propagation & links
 summary: The biggest term in any link budget, why it depends on frequency, and why real paths are always worse.
 tags: [fspl, path loss, propagation, friis, range, attenuation, link]
-order: 50
+order: 52
 related: [link-budget, antenna-gain, fresnel-zones, wavelength-and-frequency]
 ---
 
