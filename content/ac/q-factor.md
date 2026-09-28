@@ -1,5 +1,6 @@
 ---
 title: Q Factor & Bandwidth
+group: Resonance & filters
 category: ac
 summary: How sharp a resonance is, what limits it in practice, and the difference between loaded and unloaded Q.
 tags: [q factor, quality factor, bandwidth, selectivity, loaded q, damping]

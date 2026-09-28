@@ -1,5 +1,6 @@
 ---
 title: AC Fundamentals
+group: Waveforms & impedance
 category: ac
 summary: RMS, peak and average values, why RMS is the one that matters, and how cheap meters get it wrong.
 tags: [ac, rms, peak, peak-to-peak, average, crest factor, sine, waveform]

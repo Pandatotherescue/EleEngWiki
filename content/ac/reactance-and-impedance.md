@@ -1,5 +1,6 @@
 ---
 title: Reactance & Impedance
+group: Waveforms & impedance
 category: ac
 summary: What capacitors and inductors do to AC, why phase matters, and how the two combine into impedance.
 tags: [reactance, impedance, Xc, Xl, phase, capacitive, inductive, ohms]

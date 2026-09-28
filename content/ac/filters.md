@@ -1,5 +1,6 @@
 ---
 title: Filters
+group: Resonance & filters
 category: ac
 summary: First-order RC and RL filters, what the corner frequency really means, and when one pole is not enough.
 tags: [filter, low pass, high pass, cutoff, corner frequency, roll-off, butterworth, order]

@@ -444,7 +444,7 @@ export const dbConverter: CalculatorDef = {
       ],
       outputs: [
         { key: 'dbm', label: 'Level', quantity: 'dBm', primary: true },
-        { key: 'dbw', label: 'Level', quantity: 'dBW' },
+        { key: 'dbw', label: 'Level, in dBW', quantity: 'dBW' },
         { key: 'vrms', label: 'Equivalent RMS voltage', quantity: 'voltage' },
         { key: 'vpp', label: 'Equivalent peak-to-peak', quantity: 'voltage' },
       ],
@@ -471,7 +471,7 @@ export const dbConverter: CalculatorDef = {
       ],
       outputs: [
         { key: 'p', label: 'Power', quantity: 'power', primary: true },
-        { key: 'dbw', label: 'Level', quantity: 'dBW' },
+        { key: 'dbw', label: 'Level, in dBW', quantity: 'dBW' },
         { key: 'vrms', label: 'RMS voltage', quantity: 'voltage' },
         { key: 'vpp', label: 'Peak-to-peak voltage', quantity: 'voltage' },
       ],

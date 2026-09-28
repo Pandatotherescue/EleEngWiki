@@ -509,9 +509,9 @@ export const linkBudget = single({
   outputs: [
     { key: 'margin', label: 'Link margin', quantity: 'decibel', primary: true },
     { key: 'prx', label: 'Received power', quantity: 'dBm' },
+    { key: 'prx_w', label: 'Received power, linear', quantity: 'power' },
     { key: 'fspl', label: 'Free-space path loss', quantity: 'decibel' },
     { key: 'eirp', label: 'EIRP', quantity: 'dBm' },
-    { key: 'prx_w', label: 'Received power', quantity: 'power' },
     { key: 'dmax', label: 'Range at zero margin', quantity: 'length' },
   ],
   compute: (v) => {
@@ -750,9 +750,9 @@ export const eirp = single({
   ],
   outputs: [
     { key: 'eirp_dbm', label: 'EIRP', quantity: 'dBm', primary: true },
-    { key: 'eirp_w', label: 'EIRP', quantity: 'power' },
+    { key: 'eirp_w', label: 'EIRP, linear', quantity: 'power' },
     { key: 'erp_dbm', label: 'ERP (referenced to a dipole)', quantity: 'dBm' },
-    { key: 'erp_w', label: 'ERP', quantity: 'power' },
+    { key: 'erp_w', label: 'ERP, linear', quantity: 'power' },
     { key: 'pant', label: 'Power reaching the antenna', quantity: 'power' },
     { key: 'gain_dbd', label: 'Antenna gain in dBd', quantity: 'ratio', unitLabel: 'dBd' },
   ],

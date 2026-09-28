@@ -4,7 +4,7 @@ category: equipment
 summary: How to read the catalogues of the major defence and marine radio makers — designation systems, band conventions, and what actually distinguishes one model from another.
 tags: [manufacturers, designations, AN/PRC, nomenclature, procurement, export control, catalogue]
 order: 70
-related: [rohde-schwarz, furuno-marine, thales, l3harris]
+related: [rohde-schwarz, furuno-marine, thales, l3harris, cobham-satcom, lars-thrane]
 ---
 
 Professional radio catalogues are harder to read than consumer ones. The same piece of hardware often carries three names, specifications are written for procurement rather than comparison, and the figure that actually determines whether you can buy a given unit — its cryptographic fit — is frequently not on the datasheet at all.
@@ -17,6 +17,13 @@ These pages catalogue four manufacturers: three from the defence world and one f
 | [Furuno](/equipment/furuno-marine) | Nishinomiya, Japan | Civil marine, GMDSS | Type letters + number (FM-8900S) |
 | [Thales](/equipment/thales) | Paris, France | Land, naval, dismounted | TRC numbers and AN/PRC designations |
 | [L3Harris](/equipment/l3harris) | Melbourne, Florida | Tactical, airborne, HCLOS | AN/PRC and RF-78xx in parallel |
+| [Cobham SATCOM](/equipment/cobham-satcom) | Lyngby, Denmark | Maritime GMDSS and satellite | SAILOR / EXPLORER plus number |
+| [Lars Thrane](/equipment/lars-thrane) | Lyngby, Denmark | Iridium satellite, GNSS, GMDSS | LT- plus number, S for GMDSS |
+
+Three further pages survey the rest of the field: [other tactical and HF
+manufacturers](/equipment/tactical-manufacturers), [other marine
+manufacturers](/equipment/marine-manufacturers), and [land mobile and amateur
+radio](/equipment/land-mobile-radio).
 
 ## Designation systems
 

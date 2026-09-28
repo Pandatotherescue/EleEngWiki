@@ -1,5 +1,6 @@
 ---
 title: AC Power & Power Factor
+group: Power & levels
 category: ac
 summary: Real, reactive and apparent power, why the utility cares about power factor, and how three-phase systems differ.
 tags: [power factor, reactive, apparent, kvar, kva, three phase, star, delta, correction]

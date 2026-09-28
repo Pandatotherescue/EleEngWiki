@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import 'katex/dist/katex.min.css';
 import './globals.css';
+import HeaderNav from '@/components/HeaderNav';
 import SearchDialog from '@/components/SearchDialog';
 import ThemeToggle from '@/components/ThemeToggle';
 import { buildSearchIndex } from '@/lib/search-index';
@@ -13,7 +14,9 @@ export const metadata: Metadata = {
   },
   description:
     'A reference for electrical and RF engineering: concept pages with working calculators, and catalogues of professional radio hardware.',
-  metadataBase: new URL('https://eleengwiki.vercel.app'),
+  // Set NEXT_PUBLIC_SITE_URL in the Vercel project settings so canonical URLs,
+  // the sitemap and social previews point at the deployment's real hostname.
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://eleengwiki.vercel.app'),
   openGraph: {
     title: 'EleEngWiki',
     description:
@@ -41,6 +44,7 @@ const NAV = [
   { href: '/wiki', label: 'Wiki' },
   { href: '/calculators', label: 'Calculators' },
   { href: '/equipment', label: 'Equipment' },
+  { href: '/glossary', label: 'Glossary' },
   { href: '/about', label: 'About' },
 ];
 
@@ -69,23 +73,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </span>
             </Link>
 
-            <nav className="ml-3 hidden items-center gap-1 sm:flex">
-              {NAV.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-md px-2.5 py-1.5 text-[0.85rem] text-muted transition-colors hover:bg-raised hover:text-ink"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
+            <HeaderNav items={NAV} variant="bar" />
 
             <div className="ml-auto flex items-center gap-2">
               <SearchDialog docs={searchIndex} />
               <ThemeToggle />
             </div>
           </div>
+
+          {/*
+            Below sm the nav above is hidden, so the sections get their own
+            scrollable strip. Without it there is no way to reach them on a
+            phone except through search.
+          */}
+          <HeaderNav items={NAV} variant="strip" />
         </header>
 
         <main id="main">{children}</main>

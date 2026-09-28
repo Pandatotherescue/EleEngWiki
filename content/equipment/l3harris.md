@@ -1,9 +1,10 @@
 ---
 title: L3Harris Radios
 category: equipment
+group: Defence & tactical
 summary: The Falcon III and Falcon IV tactical radio families, the two parallel naming schemes, and what separates a manpack from an HCLOS link.
 tags: [l3harris, harris, falcon, AN/PRC-152, AN/PRC-117G, AN/PRC-163, RF-7800, HCLOS, SINCGARS, tactical]
-order: 74
+order: 73
 related: [radio-manufacturers, thales, noise-figure, link-budget]
 ---
 

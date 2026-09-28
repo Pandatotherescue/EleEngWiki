@@ -1,6 +1,7 @@
 ---
 title: Rohde & Schwarz Radios
 category: equipment
+group: Defence & tactical
 summary: The M3SR software-defined radio family — HF, V/UHF and airborne — plus the naval systems that tie them together.
 tags: [rohde schwarz, M3SR, M3AR, software defined radio, SDR, HF, VHF, UHF, naval, germany]
 order: 71

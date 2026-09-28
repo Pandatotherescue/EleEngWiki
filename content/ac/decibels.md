@@ -1,5 +1,6 @@
 ---
 title: Decibels
+group: Power & levels
 category: ac
 summary: Why 10log and 20log are both correct, what dBm actually references, and the handful of values worth memorising.
 tags: [db, decibel, dbm, dbw, dbi, gain, loss, logarithmic, ratio]

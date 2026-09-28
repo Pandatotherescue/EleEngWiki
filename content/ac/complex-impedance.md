@@ -1,5 +1,6 @@
 ---
 title: Complex Impedance & Phasors
+group: Waveforms & impedance
 category: ac
 summary: Doing AC circuit analysis with complex numbers, and why it turns calculus into arithmetic.
 tags: [complex, phasor, impedance, admittance, polar, rectangular, j omega]

@@ -1,9 +1,10 @@
 ---
 title: Furuno Marine Radio
 category: equipment
+group: Marine & safety
 summary: Furuno's GMDSS product line, and how the equipment list follows directly from which sea areas a vessel operates in.
 tags: [furuno, GMDSS, marine, VHF, MF/HF, NAVTEX, inmarsat, AIS, EPIRB, SOLAS, sea areas]
-order: 72
+order: 75
 related: [radio-manufacturers, vswr-and-return-loss, antenna-fundamentals, link-budget]
 ---
 

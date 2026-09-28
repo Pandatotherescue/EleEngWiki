@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/wiki`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/calculators`, lastModified: now, priority: 0.9 },
     { url: `${BASE}/equipment`, lastModified: now, priority: 0.9 },
+    { url: `${BASE}/glossary`, lastModified: now, priority: 0.8 },
     { url: `${BASE}/about`, lastModified: now, priority: 0.5 },
     ...getAllPages().map((p) => ({
       url: `${BASE}${hrefForPage(p)}`,

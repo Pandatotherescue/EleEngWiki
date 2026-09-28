@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getAllPages, getPagesInCategory } from '@/lib/content';
 import { ALL_CALCULATORS, CATEGORIES, calculatorsInCategory } from '@/calculators';
+import { ALL_TERMS } from '@/glossary';
 import { hrefForPage } from '@/lib/navigation';
 
 export default function HomePage() {
@@ -20,8 +21,8 @@ export default function HomePage() {
         <p className="mt-4 max-w-2xl text-[1.02rem] leading-relaxed text-muted">
           {pages.length - equipmentPages.length} concept pages across fundamentals, AC theory and
           RF, each with the working maths embedded in the page — plus {equipmentPages.length}{' '}
-          catalogues of the radio hardware itself. Change the numbers, read the answer, export it as
-          a PDF or drop it into your notes as Markdown.
+          catalogues of the radio hardware itself and a {ALL_TERMS.length}-term glossary. Change the
+          numbers, read the answer, export it as a PDF or drop it into your notes as Markdown.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Link
@@ -46,13 +47,14 @@ export default function HomePage() {
           — every other page in Fundamentals builds on it.
         </p>
 
-        <dl className="mt-12 grid max-w-xl grid-cols-3 gap-6">
+        <dl className="mt-12 grid max-w-2xl grid-cols-2 gap-6 sm:grid-cols-4">
           <Stat value={String(pages.length)} label="Reference pages" />
           <Stat value={String(ALL_CALCULATORS.length)} label="Calculators" />
           <Stat
             value={String(ALL_CALCULATORS.reduce((n, c) => n + c.modes.length, 0))}
             label="Solve-for modes"
           />
+          <Stat value={String(ALL_TERMS.length)} label="Glossary terms" />
         </dl>
       </section>
 
@@ -105,6 +107,32 @@ export default function HomePage() {
             );
           })}
         </div>
+      </section>
+
+      {/* ---- Glossary ---------------------------------------------------
+        Given its own band rather than a fifth card: it is a different kind of
+        thing from a page collection, and squeezing five cards into the grid
+        above made every one of them narrower for no gain.
+      */}
+      <section className="pb-14">
+        <Link
+          href="/glossary"
+          className="block rounded-xl border border-line bg-surface p-6 transition-colors hover:border-accent/50"
+        >
+          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <h2 className="text-[1.05rem] font-semibold tracking-tight text-ink">Glossary</h2>
+            <span className="font-mono text-[0.72rem] text-faint">
+              {ALL_TERMS.length} terms
+            </span>
+            <span className="ml-auto text-[0.82rem] font-medium text-accent">Look something up →</span>
+          </div>
+          <p className="mt-1.5 max-w-3xl text-[0.86rem] leading-relaxed text-muted">
+            Every acronym and term of art used across the site, expanded and defined in a sentence
+            or two — from electrical fundamentals through modulation and on to the operating and
+            regulatory vocabulary. Filterable, indexed A–Z, and cross-linked to the pages that go
+            into detail.
+          </p>
+        </Link>
       </section>
 
       {/* ---- How it works ---------------------------------------------- */}

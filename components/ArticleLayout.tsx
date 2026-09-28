@@ -1,9 +1,11 @@
 import Link from 'next/link';
-import type { Page } from '@/lib/content';
+import { getAllPages, type Page } from '@/lib/content';
 import { categoryTitle, getCalculator } from '@/calculators';
+import { areaForCategory, hrefForPage } from '@/lib/navigation';
 import CalculatorBlock from './CalculatorBlock';
 import Sidebar, { type SidebarSection } from './Sidebar';
 import TableOfContents from './TableOfContents';
+import TagList from './TagList';
 
 /**
  * The article page, shared by the wiki and the equipment section. Both render
@@ -30,9 +32,25 @@ export default function ArticleLayout({
   const prev = index > 0 ? siblings[index - 1] : null;
   const next = index >= 0 && index < siblings.length - 1 ? siblings[index + 1] : null;
 
+  /**
+   * Related pages are resolved against the whole site, not just this area.
+   * Several equipment pages deliberately point at the RF theory that explains
+   * them; resolving against `siblings` silently dropped those links.
+   */
+  const allPages = getAllPages();
+  const thisArea = areaForCategory(page.category);
   const related = page.related
-    .map((slug) => siblings.find((p) => p.slug === slug))
-    .filter((p): p is Page => Boolean(p));
+    .map((slug) => allPages.find((p) => p.slug === slug))
+    .filter((p): p is Page => Boolean(p))
+    .map((p) => {
+      const area = areaForCategory(p.category);
+      return {
+        page: p,
+        href: hrefForPage(p),
+        // Only label the jump when it leaves the area the reader is in.
+        crossArea: area.basePath !== thisArea.basePath ? area.label : null,
+      };
+    });
 
   const calculators = page.calculators
     .map((id) => {
@@ -72,18 +90,7 @@ export default function ArticleLayout({
                 {page.summary}
               </p>
             )}
-            {page.tags.length > 0 && (
-              <ul className="no-print mt-4 flex flex-wrap gap-1.5">
-                {page.tags.map((tag) => (
-                  <li
-                    key={tag}
-                    className="rounded-full border border-line bg-raised/60 px-2.5 py-0.5 font-mono text-[0.68rem] text-muted"
-                  >
-                    {tag}
-                  </li>
-                ))}
-              </ul>
-            )}
+            <TagList tags={page.tags} />
           </header>
 
           {/* Below xl the contents sit above the article instead of in a rail. */}
@@ -112,14 +119,21 @@ export default function ArticleLayout({
               </h2>
               <ul className="mt-4 grid gap-3 sm:grid-cols-2">
                 {related.map((r) => (
-                  <li key={r.slug}>
+                  <li key={r.page.slug}>
                     <Link
-                      href={`${basePath}/${r.slug}`}
+                      href={r.href}
                       className="block rounded-lg border border-line bg-surface p-3.5 transition-colors hover:border-accent/40"
                     >
-                      <span className="block text-[0.9rem] font-medium text-ink">{r.title}</span>
+                      <span className="flex items-baseline gap-2">
+                        <span className="text-[0.9rem] font-medium text-ink">{r.page.title}</span>
+                        {r.crossArea && (
+                          <span className="shrink-0 rounded border border-line bg-raised/60 px-1.5 py-0.5 font-mono text-[0.6rem] uppercase tracking-wider text-faint">
+                            {r.crossArea}
+                          </span>
+                        )}
+                      </span>
                       <span className="mt-1 block line-clamp-2 text-[0.8rem] leading-snug text-muted">
-                        {r.summary}
+                        {r.page.summary}
                       </span>
                     </Link>
                   </li>

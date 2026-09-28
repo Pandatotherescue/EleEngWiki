@@ -1,5 +1,6 @@
 ---
 title: Resonance
+group: Resonance & filters
 category: ac
 summary: When inductive and capacitive reactance cancel, and what series and parallel resonance do differently.
 tags: [resonance, tank, lc, tuned circuit, resonant frequency, series, parallel]

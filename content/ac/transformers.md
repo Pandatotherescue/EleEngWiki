@@ -1,5 +1,6 @@
 ---
 title: Transformers
+group: Power & levels
 category: ac
 summary: Turns ratio, impedance transformation, and the practical limits that separate a real transformer from the textbook one.
 tags: [transformer, turns ratio, impedance matching, isolation, core, leakage, balun]

@@ -11,6 +11,8 @@ export default function SearchDialog({ docs }: { docs: SearchDoc[] }) {
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
+  /** Set when something opens the dialog with a query already in mind. */
+  const pendingQuery = useRef<string | null>(null);
 
   const results = useMemo(() => searchDocs(docs, query), [docs, query]);
 
@@ -39,9 +41,26 @@ export default function SearchDialog({ docs }: { docs: SearchDoc[] }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [open]);
 
+  /**
+   * Anything on the page can open the dialog pre-filled by dispatching
+   * `eew:search`. The article tag pills use it: with 335 tags, 300-odd of them
+   * on a single page, a tag browse page would mostly be dead ends, whereas the
+   * search also matches titles, summaries and body text.
+   */
+  useEffect(() => {
+    const onSearch = (e: Event) => {
+      const detail = (e as CustomEvent<string>).detail;
+      pendingQuery.current = typeof detail === 'string' ? detail : '';
+      setOpen(true);
+    };
+    window.addEventListener('eew:search', onSearch);
+    return () => window.removeEventListener('eew:search', onSearch);
+  }, []);
+
   useEffect(() => {
     if (open) {
-      setQuery('');
+      setQuery(pendingQuery.current ?? '');
+      pendingQuery.current = null;
       setActive(0);
       // Focus after the dialog has painted.
       const t = setTimeout(() => inputRef.current?.focus(), 10);
@@ -113,7 +132,7 @@ export default function SearchDialog({ docs }: { docs: SearchDoc[] }) {
                     go(results[active]);
                   }
                 }}
-                placeholder="Search concepts and calculators…"
+                placeholder="Search concepts, calculators and terms…"
                 className="w-full bg-transparent text-[0.95rem] text-ink outline-none placeholder:text-faint"
               />
               <kbd className="rounded border border-line bg-raised px-1.5 py-0.5 font-mono text-[0.66rem] text-faint">
@@ -129,7 +148,7 @@ export default function SearchDialog({ docs }: { docs: SearchDoc[] }) {
               )}
               {!query && (
                 <li className="px-3 py-8 text-center text-[0.85rem] text-faint">
-                  Type to search {docs.length} pages and calculators.
+                  Type to search {docs.length} pages, calculators and glossary terms.
                 </li>
               )}
               {results.map((doc, i) => (

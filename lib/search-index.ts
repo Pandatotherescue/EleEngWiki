@@ -2,6 +2,7 @@ import { getAllPages } from './content';
 import { hrefForPage } from './navigation';
 import type { SearchDoc } from './search';
 import { ALL_CALCULATORS, categoryTitle } from '@/calculators';
+import { ALL_TERMS, categoryTitle as glossaryCategoryTitle } from '@/glossary';
 
 /** Built once at build time and serialised into the page. */
 export function buildSearchIndex(): SearchDoc[] {
@@ -38,6 +39,21 @@ export function buildSearchIndex(): SearchDoc[] {
       ]
         .join(' ')
         .toLowerCase(),
+    });
+  }
+
+  // Glossary terms, so a definition is one keystroke away from anywhere.
+  for (const entry of ALL_TERMS) {
+    const anchor = entry.term.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    docs.push({
+      id: `term:${entry.term}`,
+      title: entry.term,
+      subtitle: entry.expansion ? `${entry.expansion} — ${entry.definition}` : entry.definition,
+      href: `/glossary#term-${anchor}`,
+      kind: 'page',
+      badge: 'term',
+      category: glossaryCategoryTitle(entry.category),
+      text: [entry.term, entry.expansion ?? '', entry.definition].join(' ').toLowerCase(),
     });
   }
 

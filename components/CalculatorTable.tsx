@@ -82,8 +82,42 @@ export default function CalculatorTable({
         </span>
       </div>
 
-      <div className="scroll-slim mt-5 overflow-x-auto rounded-lg border border-line bg-surface">
-        <table className="w-full min-w-[40rem] border-collapse text-[0.88rem]">
+      {/*
+        Below sm the four-column table clipped mid-word and pushed Section and
+        Modes off-screen entirely, so it becomes a stacked list there. The whole
+        card is the hit target, which a table row cannot be.
+      */}
+      <ul className="mt-5 space-y-2 sm:hidden">
+        {filtered.map((row) => (
+          <li key={row.id}>
+            <Link
+              href={`/calculators/${row.id}`}
+              className="block rounded-lg border border-line bg-surface p-3.5 transition-colors hover:border-accent/40"
+            >
+              <span className="flex items-baseline justify-between gap-3">
+                <span className="text-[0.92rem] font-medium text-ink">{row.title}</span>
+                <span className="shrink-0 font-mono text-[0.68rem] text-faint">{row.category}</span>
+              </span>
+              <span className="mt-1 block text-[0.82rem] leading-snug text-muted">
+                {row.result}
+              </span>
+              {row.modes > 1 && (
+                <span className="mt-1.5 block font-mono text-[0.68rem] text-faint">
+                  {row.modes} modes
+                </span>
+              )}
+            </Link>
+          </li>
+        ))}
+        {filtered.length === 0 && (
+          <li className="py-12 text-center text-[0.88rem] text-muted">
+            Nothing matches that filter.
+          </li>
+        )}
+      </ul>
+
+      <div className="scroll-slim mt-5 hidden overflow-x-auto rounded-lg border border-line bg-surface sm:block">
+        <table className="w-full border-collapse text-[0.88rem]">
           <thead>
             <tr className="border-b border-line bg-raised/60">
               <th className="px-4 py-2.5 text-left font-mono text-[0.64rem] uppercase tracking-[0.1em] text-faint">

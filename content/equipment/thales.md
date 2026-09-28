@@ -1,9 +1,10 @@
 ---
 title: Thales Radios
 category: equipment
+group: Defence & tactical
 summary: Two parallel lineages — the French PR4G to SYNAPS line and the US AN/PRC-148 MBITR family — plus long-range HF and naval systems.
 tags: [thales, PR4G, SYNAPS, MBITR, AN/PRC-148, TRC, CONTACT, HF XL, france, tactical]
-order: 73
+order: 72
 related: [radio-manufacturers, l3harris, rohde-schwarz, path-loss]
 ---
 
